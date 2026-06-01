@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-base: #071329;
+  --color-bg-elevated: rgba(9, 23, 46, 0.78);
+  --color-brand-amber: #d2a542;
+  --color-brand-amber-soft: rgba(210, 165, 66, 0.35);
+  --color-text-primary: #eef4ff;
+  --color-text-muted: #a8bad7;
+  --color-focus: #f4c15e;
+}
+
+@theme inline {
+  --color-bg-base: var(--color-bg-base);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-brand-amber: var(--color-brand-amber);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-muted: var(--color-text-muted);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% -20%, #1a3768 0%, #071329 65%);
+  color: var(--color-text-primary);
+  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+}
+
+.sparkle {
+  position: absolute;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(253, 235, 184, 0.95) 0%, rgba(253, 235, 184, 0) 70%);
+}
+
+.glass-card {
+  border: 1px solid rgba(194, 214, 245, 0.18);
+  border-radius: 1.5rem;
+  background: linear-gradient(160deg, rgba(13, 33, 62, 0.86), rgba(9, 19, 34, 0.8));
+  box-shadow: 0 16px 42px rgba(2, 10, 25, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  padding: clamp(1.1rem, 2vw + 0.8rem, 2rem);
+}
+
+.magic-button {
+  border: 1px solid rgba(255, 229, 163, 0.52);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f4c15e, #c68a2f);
+  color: #1d1304;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.95rem;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 2.75rem;
+  min-width: 11rem;
+  padding: 0.65rem 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.magic-button:hover {
+  box-shadow: 0 0 25px var(--color-brand-amber-soft);
+  transform: translateY(-1px);
+}
+
+.magic-button:focus-visible,
+.choice-button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.choice-button {
+  border: 1px solid rgba(203, 218, 245, 0.2);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #eef3ff;
+  cursor: pointer;
+  font-size: 0.97rem;
+  line-height: 1.4;
+  min-height: 3.25rem;
+  padding: 0.9rem 1rem;
+  text-align: left;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.choice-button:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(228, 202, 137, 0.55);
+  transform: translateY(-1px);
+}
+
+.house-result {
+  background:
+    radial-gradient(circle at 50% 0%, var(--house-glow), transparent 58%),
+    linear-gradient(165deg, color-mix(in srgb, var(--house-primary) 78%, #03050b), #0a111f);
+  border-color: color-mix(in srgb, var(--house-secondary) 65%, transparent);
+  text-align: center;
+}
+
+.text-house-secondary {
+  color: var(--house-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
