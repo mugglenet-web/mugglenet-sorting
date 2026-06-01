@@ -11,7 +11,7 @@ A polished, animated Sorting Hat quiz web app built with **Next.js (App Router) 
 
 ## Features
 
-- Magical splash/start screen with ambient particles and floating hat animation
+- Magical splash/start screen with ambient particles and floating four-house crest animation
 - Randomized quiz flow: **12 unique questions** selected from a **19-question bank**
 - Smooth animated transitions between questions
 - Periodic thinking interstitials after Q3, Q6, Q9
@@ -32,7 +32,7 @@ A polished, animated Sorting Hat quiz web app built with **Next.js (App Router) 
 
 ## Animation / Transition Notes
 
-- **Ambient motion**: floating hat and subtle sparkles via Framer Motion loops.
+- **Ambient motion**: floating house crests and subtle sparkles via Framer Motion loops.
 - **View transitions**: `AnimatePresence` + `motion.section` fade/slide between splash, question, interstitial, and results states.
 - **Thinking moments**:
   - Short interstitial after every third answered question except the final set.

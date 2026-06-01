@@ -59,10 +59,55 @@ function HouseCrest({ house }: { house: House }) {
       <svg width="88" height="102" viewBox="0 0 88 102" role="img" aria-label={`${house} crest`}>
         <path d="M44 4 80 18v30c0 24-16 42-36 50C24 90 8 72 8 48V18L44 4Z" fill={detail.primary} stroke={detail.secondary} strokeWidth="4" />
         <path d="M44 23 62 30v16c0 12-8 21-18 26-10-5-18-14-18-26V30l18-7Z" fill={detail.secondary} opacity="0.25" />
-        <text x="44" y="58" textAnchor="middle" fontSize="34" fontFamily="serif" fill={detail.secondary}>
+        <text x="44" y="58" textAnchor="middle" fontSize="34" fontFamily="'MedievalSharp', 'Segoe UI', sans-serif" fill={detail.secondary}>
           {house[0]}
         </text>
       </svg>
+    </div>
+  );
+}
+
+function SplashCrests({ reducedMotion }: { reducedMotion: boolean }) {
+  const crests: Array<{ house: House; x: number; y: number; rotate: number }> = [
+    { house: "Gryffindor", x: -122, y: -10, rotate: -8 },
+    { house: "Ravenclaw", x: 108, y: -16, rotate: 8 },
+    { house: "Hufflepuff", x: -96, y: 50, rotate: -6 },
+    { house: "Slytherin", x: 94, y: 54, rotate: 6 },
+  ];
+
+  return (
+    <div className="relative mx-auto mt-8 h-44 w-full max-w-md" aria-hidden="true">
+      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(213,174,92,0.2),_transparent_70%)] blur-2xl" />
+      {crests.map(({ house, x, y, rotate }, index) => {
+        const detail = HOUSE_THEME[house];
+        return (
+          <motion.div
+            key={house}
+            className="absolute left-1/2 top-1/2"
+            initial={{ x, y, rotate, opacity: 0 }}
+            animate={
+              reducedMotion
+                ? { x, y, rotate, opacity: 1 }
+                : {
+                    x: [x, x + (index % 2 === 0 ? -6 : 6), x],
+                    y: [y, y - 9, y],
+                    rotate: [rotate, rotate + (index % 2 === 0 ? -2 : 2), rotate],
+                    opacity: [0.85, 1, 0.85],
+                  }
+            }
+            transition={{ delay: index * 0.08, repeat: Infinity, duration: 4.2 + index * 0.35, ease: "easeInOut" }}
+          >
+            <div className="w-fit rounded-full border border-[#e8cb89]/70 bg-[#1f152f]/80 p-2 shadow-[0_0_24px_rgba(213,174,92,0.3)] backdrop-blur-sm">
+              <svg width="54" height="62" viewBox="0 0 88 102" role="img" aria-label={`${house} crest`}>
+                <path d="M44 4 80 18v30c0 24-16 42-36 50C24 90 8 72 8 48V18L44 4Z" fill={detail.primary} stroke={detail.secondary} strokeWidth="5" />
+                <text x="44" y="60" textAnchor="middle" fontSize="38" fontFamily="'MedievalSharp', 'Segoe UI', sans-serif" fill={detail.secondary}>
+                  {house[0]}
+                </text>
+              </svg>
+            </div>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
@@ -161,7 +206,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-bg-base text-text-primary">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(77,122,183,0.25),_transparent_52%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(213,174,92,0.16),_transparent_56%)]" />
       <div className="pointer-events-none absolute inset-0 opacity-85">
         {particles.map((particle) => (
           <motion.span
@@ -199,13 +244,11 @@ export default function Home() {
               className="glass-card text-center"
             >
               <p className="text-xs uppercase tracking-[0.28em] text-text-muted">MuggleNet Sorting</p>
-              <h1 className="mt-3 font-serif text-4xl leading-tight text-amber-100 sm:text-5xl">The Sorting Hat Quiz</h1>
-              <p className="mx-auto mt-4 max-w-xl text-sm text-blue-100/80 sm:text-base">
+              <h1 className="font-display mt-3 text-4xl leading-tight text-[var(--color-brand-gold)] sm:text-5xl">The Sorting Hat Quiz</h1>
+              <p className="mx-auto mt-4 max-w-xl text-sm text-text-primary/90 sm:text-base">
                 Step into a calm, enchanted hall. Answer twelve curious prompts and let the Hat decide your house.
               </p>
-              <div className="mt-8">
-                <Hat reducedMotion={reducedMotion} />
-              </div>
+              <SplashCrests reducedMotion={reducedMotion} />
               <button type="button" className="magic-button mt-7" onClick={beginQuiz}>
                 Be Sorted
               </button>
@@ -228,7 +271,7 @@ export default function Home() {
                 </div>
                 <div className="h-1.5 rounded-full bg-white/10">
                   <motion.div
-                    className="h-full rounded-full bg-[linear-gradient(90deg,var(--color-brand-amber),#eac56a)]"
+                    className="h-full rounded-full bg-[linear-gradient(90deg,var(--color-brand-gold),#f3dd9c)]"
                     initial={{ width: 0 }}
                     animate={{ width: `${((currentIndex + 1) / QUESTION_COUNT) * 100}%` }}
                     transition={{ duration: reducedMotion ? 0.01 : 0.3 }}
@@ -236,7 +279,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl leading-tight text-blue-50 sm:text-3xl">{question.prompt}</h2>
+              <h2 className="font-display text-2xl leading-tight text-text-primary sm:text-3xl">{question.prompt}</h2>
 
               <div className="mt-6 grid gap-3">
                 {question.options.map((option) => (
@@ -264,7 +307,7 @@ export default function Home() {
               aria-live="polite"
             >
               <Hat reducedMotion={reducedMotion} />
-              <p className="mt-5 text-lg text-blue-100 sm:text-xl">
+              <p className="mt-5 text-lg text-text-primary sm:text-xl">
                 {THINKING_LINES[Math.floor(currentIndex / 3) % THINKING_LINES.length]}
               </p>
             </motion.section>
@@ -280,7 +323,7 @@ export default function Home() {
               aria-live="polite"
             >
               <Hat reducedMotion={reducedMotion} />
-              <div className="mt-5 space-y-2 text-lg text-blue-100 sm:text-xl">
+              <div className="mt-5 space-y-2 text-lg text-text-primary sm:text-xl">
                 {FINAL_THINKING_LINES.map((line, index) => (
                   <motion.p
                     key={line}
@@ -306,12 +349,12 @@ export default function Home() {
               style={houseVars}
             >
               <p className="text-xs uppercase tracking-[0.28em] text-white/75">The Hat has decided…</p>
-              <h2 className="mt-2 font-serif text-4xl text-house-secondary sm:text-5xl">{winningHouse}</h2>
+              <h2 className="font-display mt-2 text-4xl text-house-secondary sm:text-5xl">{winningHouse}</h2>
               <HouseCrest house={winningHouse} />
               <p className="mx-auto max-w-xl text-center text-sm text-white/90 sm:text-base">{HOUSE_BLURBS[winningHouse]}</p>
 
               <a
-                className="mt-6 inline-flex rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="mt-6 inline-flex rounded-full border border-[#e8cb89]/50 bg-[#2d2240]/70 px-5 py-3 text-sm font-semibold text-[#f7eed1] hover:bg-[#3a2a56]/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus)]"
                 href="https://mugglenet.com/resources/every-hogwarts-house-trait-explained-with-famous-members/"
                 target="_blank"
                 rel="noreferrer"
