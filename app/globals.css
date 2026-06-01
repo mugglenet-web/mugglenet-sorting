@@ -1,21 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=MedievalSharp&family=Nunito:wght@400;600;700;800&display=swap");
 @import "tailwindcss";
 
 :root {
-  --color-bg-base: #071329;
-  --color-bg-elevated: rgba(9, 23, 46, 0.78);
-  --color-brand-amber: #d2a542;
-  --color-brand-amber-soft: rgba(210, 165, 66, 0.35);
-  --color-text-primary: #eef4ff;
-  --color-text-muted: #a8bad7;
-  --color-focus: #f4c15e;
+  --color-bg-base: #0f0a18;
+  --color-bg-elevated: rgba(25, 17, 36, 0.84);
+  --color-brand-gold: #d5ae5c;
+  --color-brand-gold-soft: rgba(213, 174, 92, 0.35);
+  --color-brand-purple: #7a5ca6;
+  --color-brand-brown: #6f4b2f;
+  --color-text-primary: #f7eed1;
+  --color-text-muted: #d4be86;
+  --color-focus: #f5d98e;
+  --font-display: "MedievalSharp", "Segoe UI", sans-serif;
+  --font-body: "Nunito", "Segoe UI", sans-serif;
 }
 
 @theme inline {
   --color-bg-base: var(--color-bg-base);
   --color-bg-elevated: var(--color-bg-elevated);
-  --color-brand-amber: var(--color-brand-amber);
+  --color-brand-gold: var(--color-brand-gold);
+  --color-brand-purple: var(--color-brand-purple);
+  --color-brand-brown: var(--color-brand-brown);
   --color-text-primary: var(--color-text-primary);
   --color-text-muted: var(--color-text-muted);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
 * {
@@ -24,9 +33,16 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 50% -20%, #1a3768 0%, #071329 65%);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(213, 174, 92, 0.16), transparent 42%),
+    radial-gradient(circle at 85% 85%, rgba(122, 92, 166, 0.3), transparent 48%),
+    linear-gradient(162deg, #0f0918 0%, #1c1228 58%, #2b1d2d 100%);
   color: var(--color-text-primary);
-  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
 
 .sparkle {
@@ -38,10 +54,10 @@ body {
 }
 
 .glass-card {
-  border: 1px solid rgba(194, 214, 245, 0.18);
+  border: 1px solid rgba(213, 174, 92, 0.24);
   border-radius: 1.5rem;
-  background: linear-gradient(160deg, rgba(13, 33, 62, 0.86), rgba(9, 19, 34, 0.8));
-  box-shadow: 0 16px 42px rgba(2, 10, 25, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: linear-gradient(160deg, rgba(33, 23, 47, 0.9), rgba(18, 12, 28, 0.84));
+  box-shadow: 0 16px 42px rgba(4, 3, 9, 0.66), inset 0 1px 0 rgba(255, 236, 189, 0.08);
   backdrop-filter: blur(8px);
   padding: clamp(1.1rem, 2vw + 0.8rem, 2rem);
 }
@@ -49,7 +65,7 @@ body {
 .magic-button {
   border: 1px solid rgba(255, 229, 163, 0.52);
   border-radius: 999px;
-  background: linear-gradient(180deg, #f4c15e, #c68a2f);
+  background: linear-gradient(180deg, var(--color-brand-gold), #9f7430);
   color: #1d1304;
   cursor: pointer;
   display: inline-flex;
@@ -63,7 +79,7 @@ body {
 }
 
 .magic-button:hover {
-  box-shadow: 0 0 25px var(--color-brand-amber-soft);
+  box-shadow: 0 0 25px var(--color-brand-gold-soft);
   transform: translateY(-1px);
 }
 
@@ -74,10 +90,10 @@ body {
 }
 
 .choice-button {
-  border: 1px solid rgba(203, 218, 245, 0.2);
+  border: 1px solid rgba(122, 92, 166, 0.42);
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  color: #eef3ff;
+  background: linear-gradient(160deg, rgba(58, 42, 81, 0.7), rgba(33, 22, 49, 0.72));
+  color: var(--color-text-primary);
   cursor: pointer;
   font-size: 0.97rem;
   line-height: 1.4;
@@ -88,8 +104,8 @@ body {
 }
 
 .choice-button:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(228, 202, 137, 0.55);
+  background: linear-gradient(160deg, rgba(78, 57, 109, 0.82), rgba(38, 27, 58, 0.78));
+  border-color: rgba(228, 202, 137, 0.65);
   transform: translateY(-1px);
 }
 
